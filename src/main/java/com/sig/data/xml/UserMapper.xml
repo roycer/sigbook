@@ -17,7 +17,7 @@
 	<insert id="insertUser" parameterType="User" keyProperty="user.user_id"
 		useGeneratedKeys="true">
 		INSERT INTO "sig_user"
-		(user_username,user_password,user_fullname,user_email) 
+		(user_username,user_password,user_fullname,user_email)
 		VALUES (#{user_username},
 		#{user_password},
 		#{user_fullname},
@@ -30,11 +30,29 @@
 		user_password=#{user_password},
 		user_fullname=#{user_fullname},
 		user_email=#{user_email}
-		WHERE user_id=#{user_id}
+		WHERE
+		user_id=#{user_id}
 	</update>
 
 	<delete id="deleteUser">
 		DELETE FROM sig_user WHERE user_id = #{user_id};
 	</delete>
+	
+	<select id="selectMyFriends" parameterType="int" resultType="User">
+		SELECT us.user_id, us.user_username, us.user_fullname, us.user_email
+		FROM sig_user us
+		INNER JOIN sig_friend fr ON fr.friend_user_id = us.user_id
+		WHERE fr.user_id = #{user_id}
+		ORDER BY us.user_fullname DESC
+	</select>
+
+	<select id="selectMyNoFriends" parameterType="int" resultType="User">
+		SELECT us.user_id, us.user_username, us.user_fullname, us.user_email
+		FROM sig_user us
+		LEFT OUTER JOIN sig_friend fr ON fr.friend_user_id = us.user_id
+		WHERE (fr.user_id != #{user_id} AND fr.friend_user_id != #{user_id}) OR
+		fr.friend_user_id IS NULL AND us.user_id != #{user_id}
+		ORDER BY us.user_fullname DESC
+	</select>
 
 </mapper>

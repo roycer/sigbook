@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sig.data.mapper.PublicationMapper">
+	<select id="selectAll" resultType="Publication">
+		SELECT * FROM publication		
+	</select>
+	
+	<select id="selectMyFriendsPublications" parameterType="int" resultType="Publication">
+		SELECT pu.* FROM sig_publication pu 
+		INNER JOIN sig_friend fr ON fr.friend_user_id = pu.user_id
+		WHERE fr.user_id = #{user_id}
+		ORDER BY pu.publi_date DESC		
+	</select>
+	
+	<select id="selectMyPublications" parameterType="int" resultType="Publication">
+		SELECT pu.* FROM sig_publication pu
+		WHERE pu.user_id = #{user_id}
+		ORDER BY pu.publi_date DESC		
+	</select>
+	
+	<insert id="insert" parameterType="Publication">
+		INSERT INTO public.sig_publication(
+        publi_description, user_id, publi_date)
+    	VALUES (#{publi_description}, #{user_id}, now());		
+	</insert>
+	
+<!-- 	<resultMap type="Publication" id="publicationMap"> -->
+<!-- 		<id	property="id" column="publi_id"/> -->
+<!-- 		<result property="description" column="publi_description"/> -->
+<!-- 		<result property="user_id" column="user_id"/> -->
+<!-- 		<result property="date" column="publi_date"/>		 -->
+<!-- 	</resultMap> -->
+</mapper>
