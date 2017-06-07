@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sig.model.Friend;
-import com.sig.service.FriendService;
+import com.sig.service.FriendServiceImplement;
 
 @RestController
 @RequestMapping("friend")
 public class FriendRestController {
 	
 	@Autowired
-	FriendService friendService;
+	FriendServiceImplement friendService;
 
 	@RequestMapping(value = "insert", method = RequestMethod.POST, consumes = "application/json")
 	public void insert(@RequestBody Friend friend){

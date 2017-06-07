@@ -8,6 +8,8 @@ public class Publication {
 	private int publi_id, user_id;
 	private String publi_description;
 	private Date publi_date;
+	private User user;
+	
 	public int getPubli_id() {
 		return publi_id;
 	}
@@ -31,6 +33,12 @@ public class Publication {
 	}
 	public void setPubli_date(Date publi_date) {
 		this.publi_date = publi_date;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 		
 	

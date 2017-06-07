@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sig.model.Publication;
-import com.sig.service.PublicationService;
+import com.sig.service.PublicationServiceImplement;
 
 @RestController
 @RequestMapping("publication")
 public class PublicationRestController {
 
 	@Autowired
-	private PublicationService pubblicationService;
+	private PublicationServiceImplement pubblicationService;
 	
 	@RequestMapping(value = "{user_id}/getMyFriendsPublications", method = RequestMethod.GET, produces = "application/json")
 	public List<Publication> getMyFriendsPublications(@PathVariable int user_id){

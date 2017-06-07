@@ -19,7 +19,7 @@
 		INSERT INTO sig_user
 		(user_username, user_password, user_fullname, user_email)
 		VALUES (#{user_username},
-		#{user_password},
+		ENCODE(DIGEST(#{user_password},'sha1'),'hex'),
 		#{user_fullname},
 		#{user_email})
 	</insert>
@@ -27,7 +27,7 @@
 	<update id="update" parameterType="User">
 		UPDATE sig_user SET
 		user_username = #{user_username},
-		user_password = #{user_password},
+		user_password = ENCODE(DIGEST(#{user_password},'sha1'),'hex'),
 		user_fullname = #{user_fullname},
 		user_email = #{user_email}
 		WHERE user_id = #{user_id}
@@ -52,6 +52,12 @@
 		WHERE (fr.user_id != #{user_id} AND fr.friend_user_id != #{user_id}) OR
 		fr.friend_user_id IS NULL AND us.user_id != #{user_id}
 		ORDER BY us.user_fullname DESC
+	</select>
+	
+	<select id="checkLogin" parameterType="User" resultType="User">
+		SELECT user_id, user_username, user_fullname, user_email 
+		FROM sig_user
+		WHERE user_username like #{user_username} AND user_password like ENCODE(DIGEST(#{user_password},'sha1'),'hex')
 	</select>
 
 </mapper>

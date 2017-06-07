@@ -5,9 +5,10 @@
 		SELECT * FROM publication		
 	</select>
 	
-	<select id="selectMyFriendsPublications" parameterType="int" resultType="Publication">
-		SELECT pu.* FROM sig_publication pu 
+	<select id="selectMyFriendsPublications" parameterType="int" resultMap="publicationResultMap">
+		SELECT pu.*, us.user_fullname FROM sig_publication pu 
 		INNER JOIN sig_friend fr ON fr.friend_user_id = pu.user_id
+		INNER JOIN sig_user us ON pu.user_id = us.user_id
 		WHERE fr.user_id = #{user_id}
 		ORDER BY pu.publi_date DESC		
 	</select>
@@ -23,5 +24,16 @@
         publi_description, user_id, publi_date)
     	VALUES (#{publi_description}, #{user_id}, now());		
 	</insert>
+	
+	<resultMap type="Publication" id="publicationResultMap">
+		<id	property="publi_id" column="publi_id"/>
+		<result property="publi_description" column="publi_description"/>		
+		<association property="user" column="user_id" resultMap="userResultMap"/>
+	</resultMap>
+	
+	<resultMap type="User" id="userResultMap">
+		<id property="user_id" column="user_id"/>
+		<result property="user_fullname" column="user_fullname"/>
+	</resultMap>
 	
 </mapper>

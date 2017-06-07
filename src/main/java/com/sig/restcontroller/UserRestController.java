@@ -57,4 +57,8 @@ public class UserRestController {
 		return userService.selectMyNoFriends(user_id);
 	}
 
+	@RequestMapping(value = "checkLogin", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
+	public User checkLogin(@RequestBody User user) {
+		return userService.checkLogin(user);
+	}
 }

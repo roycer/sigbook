@@ -52,4 +52,10 @@ public class UserServiceImplement implements UserService {
 		return userMapper.selectMyNoFriends(user_id);
 	}
 
+	@Override
+	public User checkLogin(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.checkLogin(user);
+	}
+
 }

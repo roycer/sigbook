@@ -18,4 +18,6 @@ public interface UserService {
 	public List<User> selectMyFriends(int user_id);
 
 	public List<User> selectMyNoFriends(int user_id);
+	
+	public User checkLogin(User user);
 }

@@ -19,4 +19,5 @@ public interface UserMapper {
 
 	public List<User> selectMyNoFriends(int user_id);
 
+	public User checkLogin(User user);
 }
