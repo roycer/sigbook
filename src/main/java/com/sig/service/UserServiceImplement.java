@@ -10,29 +10,34 @@ import com.sig.model.User;
 
 @Service
 public class UserServiceImplement implements UserService {
+	
 	@Autowired
 	private UserMapper userMapper;
 
+	@Override
 	public List<User> getAllUser() {
-		List<User> ListaUser = userMapper.getAllUser();
-		return ListaUser;
+		return userMapper.getAllUser();
+	}	
+
+	@Override
+	public User select(int user_id) {
+		// TODO Auto-generated method stub
+		return userMapper.select(user_id);
 	}
 
 	@Override
-	public User insertUser(User user) {
-		userMapper.insertUser(user);
-		return user;
+	public void insert(User user) {
+		userMapper.insert(user);
 	}
 
 	@Override
-	public User updateUser(User user) {
-		userMapper.updateUser(user);
-		return user;
+	public void update(User user) {
+		userMapper.update(user);		
 	}
 
 	@Override
-	public void deleteUser(User user) {
-		userMapper.deleteUser(user);
+	public void delete(int user_id) {
+		userMapper.delete(user_id);
 	}
 	
 	@Override

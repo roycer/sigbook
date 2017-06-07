@@ -5,36 +5,35 @@
 <mapper namespace="com.sig.data.mapper.UserMapper">
 
 	<select id="getAllUser" resultType="User">
-		select *
-		from "sig_user"
+		SELECT *
+		FROM sig_user
 	</select>
 
-	<select id="SearchUser" resultType="User">
-		select * from "sig_user"
-		where user_id=#{userId}
+	<select id="select" parameterType="int" resultType="User">
+		SELECT * FROM sig_user
+		WHERE user_id = #{user_id}
 	</select>
 
-	<insert id="insertUser" parameterType="User" keyProperty="user.user_id"
+	<insert id="insert" parameterType="User" keyProperty="user.user_id"
 		useGeneratedKeys="true">
-		INSERT INTO "sig_user"
-		(user_username,user_password,user_fullname,user_email)
+		INSERT INTO sig_user
+		(user_username, user_password, user_fullname, user_email)
 		VALUES (#{user_username},
 		#{user_password},
 		#{user_fullname},
 		#{user_email})
 	</insert>
 
-	<update id="updateUser" parameterType="User">
+	<update id="update" parameterType="User">
 		UPDATE sig_user SET
-		user_username=#{user_username},
-		user_password=#{user_password},
-		user_fullname=#{user_fullname},
-		user_email=#{user_email}
-		WHERE
-		user_id=#{user_id}
+		user_username = #{user_username},
+		user_password = #{user_password},
+		user_fullname = #{user_fullname},
+		user_email = #{user_email}
+		WHERE user_id = #{user_id}
 	</update>
 
-	<delete id="deleteUser">
+	<delete id="delete" parameterType="int">
 		DELETE FROM sig_user WHERE user_id = #{user_id};
 	</delete>
 	

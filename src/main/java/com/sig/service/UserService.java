@@ -5,13 +5,15 @@ import java.util.List;
 import com.sig.model.User;
 
 public interface UserService {
-	List<User> getAllUser();
+	public List<User> getAllUser();
+	
+	public User select(int user_id);
 
-	User insertUser(User user);
+	public void insert(User user);
 
-	User updateUser(User user);
+	public void update(User user);
 
-	void deleteUser(User user);
+	public void delete(int user_id);
 
 	public List<User> selectMyFriends(int user_id);
 

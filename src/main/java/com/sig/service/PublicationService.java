@@ -10,6 +10,7 @@ import com.sig.model.Publication;
 
 @Service
 public class PublicationService implements PublicationMapper{
+	
 	@Autowired
 	private PublicationMapper publicationMapper; 
 
