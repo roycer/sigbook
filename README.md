@@ -7,3 +7,4 @@ database.jdbc.user=xxxxx
 database.jdbc.password=xxxx
 ```
 Java v1.8
+Tomcat v8.0
