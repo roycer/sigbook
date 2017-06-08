@@ -18,13 +18,13 @@ public class FriendRestController {
 	@Autowired
 	FriendServiceImplement friendService;
 
-	@CrossOrigin(origins="*",methods=RequestMethod.POST)
+	@CrossOrigin
 	@RequestMapping(value = "insert", method = RequestMethod.POST, consumes = "application/json")
 	public void insert(@RequestBody Friend friend){
 		friendService.insert(friend);
 	}
 	
-	@CrossOrigin(origins="*",methods=RequestMethod.DELETE)
+	@CrossOrigin
 	@RequestMapping(value = "{friend_id}/delete", method = RequestMethod.DELETE)
 	public void delete(@PathVariable int friend_id){
 		friendService.delete(friend_id);

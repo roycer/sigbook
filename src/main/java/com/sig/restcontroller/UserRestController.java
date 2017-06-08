@@ -23,49 +23,49 @@ public class UserRestController {
 	@Autowired
 	private UserService userService;
 
-	@CrossOrigin(origins="*",methods=RequestMethod.GET)
+	@CrossOrigin
 	@RequestMapping(value = "/listausuarios", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity getAllUser() {
 		return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
 	}
 
-	@CrossOrigin(origins="*",methods=RequestMethod.GET)
+	@CrossOrigin
 	@RequestMapping(value = "/{user_id}", method = RequestMethod.GET, produces = "application/json")
 	public User get(@PathVariable int user_id) {
 		return userService.select(user_id);
 	}
 
-	@CrossOrigin(origins="*",methods=RequestMethod.POST)
+	@CrossOrigin
 	@RequestMapping(value = "/insert", method = RequestMethod.POST, consumes = "application/json")
 	public void insert(@RequestBody User user) {
 		userService.insert(user);		
 	}
 
-	@CrossOrigin(origins="*",methods=RequestMethod.PUT)
+	@CrossOrigin
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = "application/json")
 	public void update(@RequestBody User user) {
 		userService.update(user);		
 	}
 
-	@CrossOrigin(origins="*",methods=RequestMethod.DELETE)
+	@CrossOrigin
 	@RequestMapping(value = "{user_id}/delete", method = RequestMethod.DELETE)
 	public void delete(@PathVariable int user_id) {
 		userService.delete(user_id);		
 	}
 
-	@CrossOrigin(origins="*",methods=RequestMethod.GET)
+	@CrossOrigin
 	@RequestMapping(value = "{user_id}/getMyFriends", method = RequestMethod.GET, produces = "application/json")
 	public List<User> getMyFriends(@PathVariable int user_id) {
 		return userService.selectMyFriends(user_id);
 	}
 
-	@CrossOrigin(origins="*",methods=RequestMethod.GET)
+	@CrossOrigin
 	@RequestMapping(value = "{user_id}/getMyNoFriends", method = RequestMethod.GET, produces = "application/json")
 	public List<User> getMyNoFriends(@PathVariable int user_id) {
 		return userService.selectMyNoFriends(user_id);
 	}
 
-	@CrossOrigin(origins="*",methods=RequestMethod.POST)
+	@CrossOrigin
 	@RequestMapping(value = "checkLogin", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
 	public User checkLogin(@RequestBody User user) {
 		return userService.checkLogin(user);

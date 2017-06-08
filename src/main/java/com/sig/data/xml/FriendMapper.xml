@@ -9,6 +9,9 @@
 		INSERT INTO sig_friend(
         user_id, friend_user_id)
     	VALUES (#{user_id}, #{friend_user_id});
+    	INSERT INTO sig_friend(
+        user_id, friend_user_id)
+    	VALUES (#{friend_user_id},#{user_id});
 	</insert>
 	
 	<delete id="delete" parameterType="int">
