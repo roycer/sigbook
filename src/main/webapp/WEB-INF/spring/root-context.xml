@@ -13,8 +13,6 @@
 	
 	<context:property-placeholder location="classpath:datasource.properties"/>
 	
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="datasource"></property>
 	</bean>

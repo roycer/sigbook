@@ -1,7 +1,7 @@
 package com.sig.service;
 
 import java.util.List;
-
+import com.sig.util.MyJavaUtil_security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +55,10 @@ public class UserServiceImplement implements UserService {
 	@Override
 	public User checkLogin(User user) {
 		// TODO Auto-generated method stub
-		return userMapper.checkLogin(user);
+		User u =  userMapper.checkLogin(user);
+		MyJavaUtil_security utilmd5 = new MyJavaUtil_security();
+		u.setUser_email(utilmd5.md5(u.getUser_email()));
+		return u;
 	}
 
 }
