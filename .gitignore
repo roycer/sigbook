@@ -1,5 +1,6 @@
 *.class
 *.iml
+pom.properties
 target/
 .project
 .classpath
