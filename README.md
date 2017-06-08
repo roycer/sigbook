@@ -1,5 +1,5 @@
 # sigbook
-CREAR en resources: datasource.properties
+CREATE in resources: datasource.properties
 ```
 database.jdbc.driver=org.postgresql.Driver
 database.jdbc.url=jdbc:postgresql://localhost:5432/sigbook
