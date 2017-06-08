@@ -27,7 +27,8 @@
 	
 	<resultMap type="Publication" id="publicationResultMap">
 		<id	property="publi_id" column="publi_id"/>
-		<result property="publi_description" column="publi_description"/>		
+		<result property="publi_description" column="publi_description"/>
+		<result property="publi_date" column="publi_date"/>			
 		<association property="user" column="user_id" resultMap="userResultMap"/>
 	</resultMap>
 	
