@@ -1,6 +1,7 @@
 package com.sig.restcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +18,13 @@ public class FriendRestController {
 	@Autowired
 	FriendServiceImplement friendService;
 
+	@CrossOrigin(origins="*",methods=RequestMethod.POST)
 	@RequestMapping(value = "insert", method = RequestMethod.POST, consumes = "application/json")
 	public void insert(@RequestBody Friend friend){
 		friendService.insert(friend);
 	}
 	
+	@CrossOrigin(origins="*",methods=RequestMethod.DELETE)
 	@RequestMapping(value = "{friend_id}/delete", method = RequestMethod.DELETE)
 	public void delete(@PathVariable int friend_id){
 		friendService.delete(friend_id);

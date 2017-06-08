@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,16 +22,19 @@ public class PublicationRestController {
 	@Autowired
 	private PublicationServiceImplement pubblicationService;
 	
+	@CrossOrigin(origins="*",methods=RequestMethod.GET)
 	@RequestMapping(value = "{user_id}/getMyFriendsPublications", method = RequestMethod.GET, produces = "application/json")
 	public List<Publication> getMyFriendsPublications(@PathVariable int user_id){
 		return pubblicationService.selectMyFriendsPublications(user_id);
 	}
 	
+	@CrossOrigin(origins="*",methods=RequestMethod.GET)
 	@RequestMapping(value = "{user_id}/getMyPublications", method = RequestMethod.GET, produces = "application/json")
 	public List<Publication> getMyPublications(@PathVariable int user_id){
 		return pubblicationService.selectMyPublications(user_id);
 	}
 	
+	@CrossOrigin(origins="*",methods=RequestMethod.POST)
 	@RequestMapping(value = "{user_id}/insert", method = RequestMethod.POST, consumes = "application/json")
 	public void insert(@PathVariable int user_id, @RequestBody Publication publication){
 		publication.setUser_id(user_id);		
